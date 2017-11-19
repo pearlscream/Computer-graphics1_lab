@@ -46,7 +46,44 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        rotateField = new javax.swing.JTextField();
+        translateXField = new javax.swing.JTextField();
+        scaleInput = new javax.swing.JTextField();
+        translateYField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        translateButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        R0XInput = new javax.swing.JTextField();
+        R0YInput = new javax.swing.JTextField();
+        RXYInput = new javax.swing.JTextField();
+        RYXInput = new javax.swing.JTextField();
+        RXXInput = new javax.swing.JTextField();
+        RYYInput = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        affineButton = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        projectiveR0XInput = new javax.swing.JTextField();
+        projectiveR0YInput = new javax.swing.JTextField();
+        projectiveRXXInput = new javax.swing.JTextField();
+        projectiveRXYInput = new javax.swing.JTextField();
+        projectiveRYXInput = new javax.swing.JTextField();
+        W0Input = new javax.swing.JTextField();
+        projectiveRYYInput = new javax.swing.JTextField();
+        WYInput = new javax.swing.JTextField();
+        WXInput = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,33 +182,288 @@ public class NewJFrame extends javax.swing.JFrame {
 
         sideAField.getAccessibleContext().setAccessibleName("sideAField");
 
-        jTabbedPane1.addTab("tab1", jPanel2);
+        jTabbedPane1.addTab("Figure", jPanel2);
+
+        rotateField.setText("0");
+
+        translateXField.setText("0");
+
+        scaleInput.setText("1");
+        scaleInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scaleInputActionPerformed(evt);
+            }
+        });
+
+        translateYField.setText("0");
+
+        jLabel6.setText("Rotate");
+
+        jLabel7.setText("TranslateY");
+
+        jLabel8.setText("TranslateX");
+
+        jLabel9.setText("Scale");
+
+        translateButton.setText("Translate");
+        translateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                translateButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 896, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel6))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(16, 16, 16)
+                                                .addComponent(rotateField)))
+                                .addGap(68, 68, 68)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(scaleInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(72, 72, 72)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(translateXField))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(translateYField))
+                                .addGap(32, 32, 32)
+                                .addComponent(translateButton)
+                                .addGap(405, 405, 405))
         );
         jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 70, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(rotateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(translateXField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(scaleInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(translateYField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(translateButton))
+                                .addGap(21, 21, 21))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel3);
+        jTabbedPane1.addTab("Translate", jPanel3);
+
+        R0XInput.setText("1");
+
+        R0YInput.setText("2");
+
+        RXYInput.setText("2");
+
+        RYXInput.setText("0");
+
+        RXXInput.setText("1");
+        RXXInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RXXInputActionPerformed(evt);
+            }
+        });
+
+        RYYInput.setText("1");
+
+        jLabel10.setText("R0");
+
+        jLabel11.setText("RX");
+
+        jLabel12.setText("RY");
+
+        affineButton.setText("Affine");
+        affineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                affineButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
                 jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 896, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(R0XInput, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(R0YInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(RXXInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(RXYInput, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(29, 29, 29)
+                                                .addComponent(RYXInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(RYYInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(11, 11, 11))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                                .addGap(70, 70, 70)
+                                                .addComponent(jLabel10)
+                                                .addGap(117, 117, 117)
+                                                .addComponent(jLabel11)
+                                                .addGap(109, 109, 109)
+                                                .addComponent(jLabel12)))
+                                .addGap(17, 17, 17)
+                                .addComponent(affineButton)
+                                .addContainerGap(431, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
                 jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 70, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(R0XInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(RYXInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(RXYInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(RXXInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(R0YInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(RYYInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(affineButton))
+                                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab3", jPanel4);
+        jTabbedPane1.addTab("Affine", jPanel4);
+
+        projectiveR0XInput.setText("0");
+
+        projectiveR0YInput.setText("0");
+
+        projectiveRXXInput.setText("500");
+
+        projectiveRXYInput.setText("100");
+
+        projectiveRYXInput.setText("0");
+
+        W0Input.setText("600");
+
+        projectiveRYYInput.setText("500");
+
+        WYInput.setText("1");
+        WYInput.setToolTipText("");
+
+        WXInput.setText("1");
+
+        jLabel13.setText("R0");
+
+        jLabel14.setText("RX");
+
+        jLabel15.setText("R0");
+
+        jLabel16.setText("W0");
+
+        jLabel17.setText("RY");
+
+        jLabel18.setText("WX");
+
+        jLabel19.setText("WY");
+
+        jButton2.setText("Projective");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(projectiveR0XInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(projectiveR0YInput, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(projectiveRXXInput, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(projectiveRXYInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(projectiveRYXInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(projectiveRYYInput, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addGap(33, 33, 33)
+                                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(51, 51, 51)
+                                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(30, 30, 30)))
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(W0Input, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addComponent(WXInput, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(WYInput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton2))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(433, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(813, Short.MAX_VALUE)))
+        );
+        jPanel5Layout.setVerticalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel14)
+                                        .addComponent(jLabel16)
+                                        .addComponent(jLabel17)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabel19))
+                                .addGap(7, 7, 7)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(projectiveR0XInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(projectiveR0YInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(projectiveRXXInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(projectiveRXYInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(projectiveRYXInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(projectiveRYYInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(W0Input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(WXInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(WYInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton2))
+                                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jLabel15)
+                                        .addContainerGap(34, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Projective", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,6 +505,76 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radius1FieldActionPerformed
 
+    private void scaleInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scaleInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scaleInputActionPerformed
+
+    private void translateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_translateButtonActionPerformed
+        FigureBuilder figureBuilder = new FigureBuilder();
+        figureBuilder.setSideA(Integer.parseInt(sideAField.getText()));
+        figureBuilder.setSideB(Integer.parseInt(sideBField.getText()));
+        figureBuilder.setSideC(Integer.parseInt(sideCField.getText()));
+        figureBuilder.setRadius1(Integer.parseInt(radius1Field.getText()));
+        figureBuilder.setRadius2(Integer.parseInt(radius2Field.getText()));
+        figureBuilder.setRotate(Integer.parseInt(rotateField.getText()));
+        figureBuilder.setScale(Double.parseDouble(scaleInput.getText()));
+        figureBuilder.setTranslateX(Integer.parseInt(translateXField.getText()));
+        figureBuilder.setTranslateY(Integer.parseInt(translateYField.getText()));
+
+        jPanel1.removeAll();
+        jPanel1.add(figureBuilder);
+        jPanel1.updateUI();
+    }//GEN-LAST:event_translateButtonActionPerformed
+
+    private void RXXInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RXXInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RXXInputActionPerformed
+
+    private void affineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_affineButtonActionPerformed
+        FigureBuilder figureBuilder = new FigureBuilder("affine");
+        figureBuilder.setSideA(Integer.parseInt(sideAField.getText()));
+        figureBuilder.setSideB(Integer.parseInt(sideBField.getText()));
+        figureBuilder.setSideC(Integer.parseInt(sideCField.getText()));
+        figureBuilder.setRadius1(Integer.parseInt(radius1Field.getText()));
+        figureBuilder.setRadius2(Integer.parseInt(radius2Field.getText()));
+
+        figureBuilder.setAffineR0x(Integer.parseInt(R0XInput.getText()));
+        figureBuilder.setAffineR0y(Integer.parseInt(R0YInput.getText()));
+        figureBuilder.setAffineRXy(Integer.parseInt(RXYInput.getText()));
+        figureBuilder.setAffineRXx(Integer.parseInt(RXXInput.getText()));
+        figureBuilder.setAffineRYx(Integer.parseInt(RYXInput.getText()));
+        figureBuilder.setAffineRYy(Integer.parseInt(RYYInput.getText()));
+
+
+        jPanel1.removeAll();
+        jPanel1.add(figureBuilder);
+        jPanel1.updateUI();
+    }//GEN-LAST:event_affineButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FigureBuilder figureBuilder = new FigureBuilder("projective");
+        figureBuilder.setSideA(Integer.parseInt(sideAField.getText()));
+        figureBuilder.setSideB(Integer.parseInt(sideBField.getText()));
+        figureBuilder.setSideC(Integer.parseInt(sideCField.getText()));
+        figureBuilder.setRadius1(Integer.parseInt(radius1Field.getText()));
+        figureBuilder.setRadius2(Integer.parseInt(radius2Field.getText()));
+
+        figureBuilder.setProjectiveR0x(Integer.parseInt(projectiveR0XInput.getText()));
+        figureBuilder.setProjectiveR0y(Integer.parseInt(projectiveR0YInput.getText()));
+        figureBuilder.setProjectiveRXy(Integer.parseInt(projectiveRXYInput.getText()));
+        figureBuilder.setProjectiveRXx(Integer.parseInt(projectiveRXXInput.getText()));
+        figureBuilder.setProjectiveRYx(Integer.parseInt(projectiveRYXInput.getText()));
+        figureBuilder.setProjectiveRYy(Integer.parseInt(projectiveRYYInput.getText()));
+        figureBuilder.setProjectiveW0(Integer.parseInt(W0Input.getText()));
+        figureBuilder.setProjectiveWx(Integer.parseInt(WXInput.getText()));
+        figureBuilder.setProjectiveWy(Integer.parseInt(WYInput.getText()));
+
+
+        jPanel1.removeAll();
+        jPanel1.add(figureBuilder);
+        jPanel1.updateUI();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,21 +611,58 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField R0XInput;
+    private javax.swing.JTextField R0YInput;
+    private javax.swing.JTextField RXXInput;
+    private javax.swing.JTextField RXYInput;
+    private javax.swing.JTextField RYXInput;
+    private javax.swing.JTextField RYYInput;
+    private javax.swing.JTextField W0Input;
+    private javax.swing.JTextField WXInput;
+    private javax.swing.JTextField WYInput;
+    private javax.swing.JButton affineButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField projectiveR0XInput;
+    private javax.swing.JTextField projectiveR0YInput;
+    private javax.swing.JTextField projectiveRXXInput;
+    private javax.swing.JTextField projectiveRXYInput;
+    private javax.swing.JTextField projectiveRYXInput;
+    private javax.swing.JTextField projectiveRYYInput;
     private javax.swing.JTextField radius1Field;
     private javax.swing.JTextField radius2Field;
+    private javax.swing.JTextField rotateField;
+    private javax.swing.JTextField scaleInput;
     private javax.swing.JTextField sideAField;
     private javax.swing.JTextField sideBField;
     private javax.swing.JTextField sideCField;
+    private javax.swing.JButton translateButton;
+    private javax.swing.JTextField translateXField;
+    private javax.swing.JTextField translateYField;
     // End of variables declaration//GEN-END:variables
 }

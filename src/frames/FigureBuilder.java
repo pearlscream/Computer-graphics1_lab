@@ -27,17 +27,44 @@ public class FigureBuilder extends JPanel {
     private int radius1 = 40;
     private int radius2 = 30;
 
+    private int affineR0x = 0;
+    private int affineR0y = 0;
+    private int affineRXx = 1;
+    private int affineRXy = 2;
+    private int affineRYx = 0;
+    private int affineRYy = 1;
+
+
+    private int projectiveR0x = 0;
+    private int projectiveR0y = 0;
+    private int projectiveRXx = 200;
+    private int projectiveRXy = 100;
+    private int projectiveRYx = 0;
+    private int projectiveRYy = 500;
+    private int projectiveW0 = 600;
+    private int projectiveWx = 1;
+    private int projectiveWy = 1;
+
+    public FigureBuilder() {
+        transformFunction = this::translateTransform;
+    }
+
+    public FigureBuilder(String function) {
+        transformFunction = this::translateTransform;
+        if (function.equals("affine")) {
+            transformFunction = this::affineTransform;
+        }
+        if (function.equals("projective")) {
+            transformFunction = this::projectiveTransform;
+        }
+
+    }
 
     private List<Side> sides = new ArrayList<>();
 
     private Function<List<Point>, List<Point>> transformFunction;
 
     public void paintComponent(Graphics g) {
-        transformFunction = this::translateTransform;
-        draw(g);
-    }
-
-    private void draw(Graphics g) {
         g.setColor(Color.WHITE);
         super.paintComponent(g);
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -278,12 +305,6 @@ public class FigureBuilder extends JPanel {
     }
 
     List<Point> affineTransform(List<Point> points) {
-        int affineR0x = 0;
-        int affineR0y = 0;
-        int affineRXx = 1;
-        int affineRXy = 2;
-        int affineRYx = 0;
-        int affineRYy = 1;
         return points
                 .stream()
                 .map((point) -> new Point(affineR0x + affineRXx * point.getX() + affineRXy * point.getY(), affineR0y + affineRYx * point.getX() + affineRYy * point.getY()))
@@ -291,16 +312,6 @@ public class FigureBuilder extends JPanel {
     }
 
     List<Point> projectiveTransform(List<Point> points) {
-        int projectiveR0x = 0;
-        int projectiveR0y = 0;
-        int projectiveRXx = 200;
-        int projectiveRXy = 100;
-        int projectiveRYx = 0;
-        int projectiveRYy = 500;
-        int projectiveW0 = 600;
-        int projectiveWx = 1;
-        int projectiveWy = 1;
-
         return points
                 .stream()
                 .map((point) -> new Point((projectiveR0x * projectiveW0 + projectiveRXx * projectiveWx * point.getX() + projectiveRXy * projectiveWy * point.getY())
@@ -387,5 +398,125 @@ public class FigureBuilder extends JPanel {
 
     public void setRadius2(int radius2) {
         this.radius2 = radius2;
+    }
+
+    public int getAffineR0x() {
+        return affineR0x;
+    }
+
+    public void setAffineR0x(int affineR0x) {
+        this.affineR0x = affineR0x;
+    }
+
+    public int getAffineR0y() {
+        return affineR0y;
+    }
+
+    public void setAffineR0y(int affineR0y) {
+        this.affineR0y = affineR0y;
+    }
+
+    public int getAffineRXx() {
+        return affineRXx;
+    }
+
+    public void setAffineRXx(int affineRXx) {
+        this.affineRXx = affineRXx;
+    }
+
+    public int getAffineRXy() {
+        return affineRXy;
+    }
+
+    public void setAffineRXy(int affineRXy) {
+        this.affineRXy = affineRXy;
+    }
+
+    public int getAffineRYx() {
+        return affineRYx;
+    }
+
+    public void setAffineRYx(int affineRYx) {
+        this.affineRYx = affineRYx;
+    }
+
+    public int getAffineRYy() {
+        return affineRYy;
+    }
+
+    public void setAffineRYy(int affineRYy) {
+        this.affineRYy = affineRYy;
+    }
+
+    public int getProjectiveR0x() {
+        return projectiveR0x;
+    }
+
+    public void setProjectiveR0x(int projectiveR0x) {
+        this.projectiveR0x = projectiveR0x;
+    }
+
+    public int getProjectiveR0y() {
+        return projectiveR0y;
+    }
+
+    public void setProjectiveR0y(int projectiveR0y) {
+        this.projectiveR0y = projectiveR0y;
+    }
+
+    public int getProjectiveRXx() {
+        return projectiveRXx;
+    }
+
+    public void setProjectiveRXx(int projectiveRXx) {
+        this.projectiveRXx = projectiveRXx;
+    }
+
+    public int getProjectiveRXy() {
+        return projectiveRXy;
+    }
+
+    public void setProjectiveRXy(int projectiveRXy) {
+        this.projectiveRXy = projectiveRXy;
+    }
+
+    public int getProjectiveRYx() {
+        return projectiveRYx;
+    }
+
+    public void setProjectiveRYx(int projectiveRYx) {
+        this.projectiveRYx = projectiveRYx;
+    }
+
+    public int getProjectiveRYy() {
+        return projectiveRYy;
+    }
+
+    public void setProjectiveRYy(int projectiveRYy) {
+        this.projectiveRYy = projectiveRYy;
+    }
+
+    public int getProjectiveW0() {
+        return projectiveW0;
+    }
+
+    public void setProjectiveW0(int projectiveW0) {
+        this.projectiveW0 = projectiveW0;
+    }
+
+    public int getProjectiveWx() {
+        return projectiveWx;
+    }
+
+    public void setProjectiveWx(int projectiveWx) {
+        this.projectiveWx = projectiveWx;
+    }
+
+    public int getProjectiveWy() {
+        return projectiveWy;
+    }
+
+    public void setProjectiveWy(int projectiveWy) {
+        this.projectiveWy = projectiveWy;
     }
 }
