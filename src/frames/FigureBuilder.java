@@ -45,17 +45,23 @@ public class FigureBuilder extends JPanel {
     private int projectiveWx = 1;
     private int projectiveWy = 1;
 
+    private boolean isTransformed = false;
+
     public FigureBuilder() {
         transformFunction = this::translateTransform;
     }
+
+    private String transformationType = "translate";
 
     public FigureBuilder(String function) {
         transformFunction = this::translateTransform;
         if (function.equals("affine")) {
             transformFunction = this::affineTransform;
+            transformationType = function;
         }
         if (function.equals("projective")) {
             transformFunction = this::projectiveTransform;
+            transformationType = function;
         }
 
     }
@@ -80,13 +86,12 @@ public class FigureBuilder extends JPanel {
 
         // draw the x and y axes
         drawGridAndAxes(g);
-//        drawFigure(g);
         Graphics2D g2 = (Graphics2D) g;
 
         List<Point> outerShape = transformFunction.apply(translateTransform(getPointsOuter(sideA, sideB, sideC, radius1)));
         drawShape(g2, outerShape);
 
-        List<Point> firstCircle = transformFunction.apply(translateTransform(getFirstCircle(radius2)));
+        List<Point> firstCircle = transformFunction.apply(translateTransform(getFirstCircle(radius2, g2)));
         drawShape(g2, firstCircle);
 
         List<Point> secondCircle = transformFunction.apply(translateTransform(getSecondCircle()));
@@ -98,7 +103,9 @@ public class FigureBuilder extends JPanel {
         List<Point> inner = transformFunction.apply(translateTransform(getInnerShape()));
         drawShape(g2, inner);
 
-        drawSides(g2);
+        if (!isTransformed) {
+            drawSides(g2);
+        }
     }
 
 
@@ -142,6 +149,7 @@ public class FigureBuilder extends JPanel {
 
         points.addAll(getCirclePoints(200, 270, center, radius2));
 
+        points.add(basePoint);
         return points;
     }
 
@@ -157,18 +165,20 @@ public class FigureBuilder extends JPanel {
         return points;
     }
 
-    private List<Point> getFirstCircle(int radius) {
+    private List<Point> getFirstCircle(int radius, Graphics2D g2) {
         int startDegree = 0;
         int endDegree = 360;
         int x;
         int y;
         LinkedList<Point> points = new LinkedList<>();
         Point center = new Point(-50, -90);
-        for (double i = startDegree; i < endDegree; i++) {
+        for (double i = startDegree; i < endDegree; i = i + 4) {
             x = (int) (radius * Math.cos(2 * Math.PI * (i + 1) / 360) + center.getX());
             y = (int) (radius * Math.sin(2 * Math.PI * (i + 1) / 360) + center.getY());
             points.add(new Point(x, y));
         }
+        g2.setStroke(new BasicStroke(3));
+
         return points;
     }
 
@@ -194,31 +204,49 @@ public class FigureBuilder extends JPanel {
         points.add(new Point(75, -25));
         points.add(new Point(75, 75));
         points.add(new Point(-25, 75));
+        points.add(new Point(-25, -25));
         return points;
     }
 
     private List<Point> getInnerShape() {
         LinkedList<Point> points = new LinkedList<>();
         int radius = 180;
-        int startDegree = -10;
+        int startDegree = -15;
         int endDegree = 70;
         int x = 0;
         int y = 0;
+        int startX = 0;
+        int startY = 0;
         Point center = new Point(0, 0);
 
         for (double i = startDegree; i < endDegree; i++) {
             x = (int) (radius * Math.cos(2 * Math.PI * (i + 1) / 360) + center.getX());
             y = (int) (radius * Math.sin(2 * Math.PI * (i + 1) / 360) + center.getY());
+            if (i == startDegree) {
+                startX = x;
+                startY = y;
+            }
             points.add(new Point(x, y));
         }
-        points.add(new Point(x - 30, y - 35));
-        radius = 135;
-        for (int i = x - 30; i < 150; i++) {
+
+        double angle = Math.toRadians(20);
+        double endX = points.getLast().getX() - 50 * Math.sin(angle);
+        double endY = points.getLast().getY() - 50 * Math.cos(angle);
+
+        points.add(new Point(endX, endY));
+
+        radius = 130;
+        for (int i = x - 15; i < 130; i++) {
             points.add(new Point(i, Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2))));
+            System.out.println(points.getLast());
         }
-        for (int i = 150; i > 133; i--) {
+        for (int i = 130; i > 125; i--) {
             points.add(new Point(i, -Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2))));
         }
+        angle = Math.toRadians(75);
+        endX = points.getLast().getX() + 50 * Math.sin(angle);
+        endY = points.getLast().getY() - 50 * Math.cos(angle);
+        points.add(new Point(endX, endY));
         return points;
     }
 
@@ -244,12 +272,10 @@ public class FigureBuilder extends JPanel {
     }
 
     private void drawShape(Graphics2D g2, List<Point> points) {
-        GeneralPath ctx = new GeneralPath();
-        ctx.moveTo(points.get(0).getX(), points.get(0).getY());
-        points.forEach((point) -> ctx.lineTo(point.getX(), point.getY()));
-        ctx.closePath();
         g2.setStroke(new BasicStroke(3));
-        g2.draw(ctx);
+        for (int i = 0; i < points.size() - 1; i++) {
+            g2.drawLine((int) points.get(i).getX(), (int) points.get(i).getY(), (int) points.get(i + 1).getX(), (int) points.get(i + 1).getY());
+        }
     }
 
     private List<Point> translateTransform(List<Point> points) {
@@ -296,7 +322,13 @@ public class FigureBuilder extends JPanel {
                 g.drawLine(-tic, k, +tic, k);
                 g2.setColor(Color.GRAY);
                 g2.setStroke(new BasicStroke(1));
-                g2.drawLine(-hBound, k, hBound, k);
+                List<Point> gridPoints = new LinkedList<>();
+                gridPoints.add(new Point(-hBound, k));
+                gridPoints.add(new Point(hBound, k));
+                if (!transformationType.equals("translate")) {
+                    gridPoints = transformFunction.apply(gridPoints);
+                }
+                g2.drawLine((int) gridPoints.get(0).getX(), (int) gridPoints.get(0).getY(), (int) gridPoints.get(1).getX(), (int) gridPoints.get(1).getY());
                 g2.setColor(Color.BLACK);
                 g2.setStroke(new BasicStroke(2));
                 g2.drawString(k.toString(), 10, k);
@@ -323,7 +355,13 @@ public class FigureBuilder extends JPanel {
     private void drawGridLine(Graphics2D g2, int bound, int k) {
         g2.setColor(Color.GRAY);
         g2.setStroke(new BasicStroke(1));
-        g2.drawLine(k, -bound, k, bound);
+        List<Point> gridPoints = new LinkedList<>();
+        gridPoints.add(new Point(k, -bound));
+        gridPoints.add(new Point(k, bound));
+        if (!transformationType.equals("translate")) {
+            gridPoints = transformFunction.apply(gridPoints);
+        }
+        g2.drawLine((int) gridPoints.get(0).getX(), (int) gridPoints.get(0).getY(), (int) gridPoints.get(1).getX(), (int) gridPoints.get(1).getY());
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
     }
@@ -518,5 +556,13 @@ public class FigureBuilder extends JPanel {
 
     public void setProjectiveWy(int projectiveWy) {
         this.projectiveWy = projectiveWy;
+    }
+
+    public boolean isTransformed() {
+        return isTransformed;
+    }
+
+    public void setTransformed(boolean transformed) {
+        isTransformed = transformed;
     }
 }
