@@ -16,7 +16,9 @@ import java.util.stream.Collectors;
  * Created by Dima on 22.10.2017.
  */
 public class FigureBuilder extends JPanel {
-    private int rotate = 0;
+    private int rotateX = 0;
+    private int rotateY = 0;
+    private int rotateDegree = 0;
     private double scale = 1;
     private int translateX = 0;
     private int translateY = 0;
@@ -238,7 +240,6 @@ public class FigureBuilder extends JPanel {
         radius = 130;
         for (int i = x - 15; i < 130; i++) {
             points.add(new Point(i, Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2))));
-            System.out.println(points.getLast());
         }
         for (int i = 130; i > 125; i--) {
             points.add(new Point(i, -Math.sqrt(Math.pow(radius, 2) - Math.pow(i, 2))));
@@ -279,15 +280,15 @@ public class FigureBuilder extends JPanel {
     }
 
     private List<Point> translateTransform(List<Point> points) {
-        double rotateDegree = this.rotate / 180.0 * Math.PI;
+        double rotateDegree = this.rotateDegree / 180.0 * Math.PI;
         double scale = this.scale;
         double translateX = +this.translateX;
         double translateY = -this.translateY;
         return points
                 .stream()
                 .map(point -> {
-                    double x = point.getX() * scale * Math.cos(rotateDegree) - point.getY() * scale * Math.sin(rotateDegree) + translateX;
-                    double y = point.getX() * scale * Math.sin(rotateDegree) + point.getY() * scale * Math.cos(rotateDegree) + translateY;
+                    double x = (point.getX() - rotateX) * scale * Math.cos(rotateDegree) - (point.getY() - rotateY) * scale * Math.sin(rotateDegree) + translateX + rotateX;
+                    double y = (point.getX() - rotateX) * scale * Math.sin(rotateDegree) + (point.getY() - rotateY) * scale * Math.cos(rotateDegree) + translateY + rotateY;
                     return new Point(x, y);
                 })
                 .collect(Collectors.toList());
@@ -366,12 +367,12 @@ public class FigureBuilder extends JPanel {
         g2.setStroke(new BasicStroke(2));
     }
 
-    public int getRotate() {
-        return rotate;
+    public int getRotateDegree() {
+        return rotateDegree;
     }
 
-    public void setRotate(int rotate) {
-        this.rotate = rotate;
+    public void setRotateDegree(int rotateDegree) {
+        this.rotateDegree = rotateDegree;
     }
 
     public double getScale() {
@@ -564,5 +565,21 @@ public class FigureBuilder extends JPanel {
 
     public void setTransformed(boolean transformed) {
         isTransformed = transformed;
+    }
+
+    public int getRotateX() {
+        return rotateX;
+    }
+
+    public void setRotateX(int rotateX) {
+        this.rotateX = rotateX;
+    }
+
+    public int getRotateY() {
+        return rotateY;
+    }
+
+    public void setRotateY(int rotateY) {
+        this.rotateY = rotateY;
     }
 }
