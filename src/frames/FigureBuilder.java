@@ -304,26 +304,43 @@ public class FigureBuilder extends JPanel {
         g2.setStroke(new BasicStroke(2));
 
         // draw the x-axis
-        g.drawLine(-hBound, 0, hBound, 0);
+        List<Point> gridPoints = new LinkedList<>();
+        gridPoints.add(new Point(-hBound, 0));
+        gridPoints.add(new Point(hBound, 0));
+        if (!transformationType.equals("translate")) {
+            gridPoints = transformFunction.apply(gridPoints);
+        }
+        g2.drawLine((int) gridPoints.get(0).getX(), (int) gridPoints.get(0).getY(), (int) gridPoints.get(1).getX(), (int) gridPoints.get(1).getY());
 
         // draw the tic marks along the x axis
         g.setFont(new Font("Times New Roman", Font.PLAIN, 10));
         for (Integer k = -hBound; k <= hBound; k += 25) {
-            g.drawLine(k, tic, k, -tic);
             drawGridLine(g2, vBound, k);
-            g2.drawString(k.toString(), k - 10, 13);
+            if (transformationType.equals("translate")) {
+                g.drawLine(k, tic, k, -tic);
+                g2.drawString(k.toString(), k - 10, 13);
+            }
         }
 
         // draw the y-axis
-        g.drawLine(0, vBound, 0, -vBound);
+        gridPoints = new LinkedList<>();
+        gridPoints.add(new Point(0, vBound));
+        gridPoints.add(new Point(0, -vBound));
+        if (!transformationType.equals("translate")) {
+            gridPoints = transformFunction.apply(gridPoints);
+        }
+        g2.drawLine((int) gridPoints.get(0).getX(), (int) gridPoints.get(0).getY(), (int) gridPoints.get(1).getX(), (int) gridPoints.get(1).getY());
 
         // draw the tic marks along the y axis
         for (Integer k = -vBound; k <= vBound; k += 25) {
             if (!k.equals(0)) {
-                g.drawLine(-tic, k, +tic, k);
+                if (transformationType.equals("translate")) {
+                    g.drawLine(-tic, k, +tic, k);
+                    g2.drawString(k.toString(), 10, k);
+                }
                 g2.setColor(Color.GRAY);
                 g2.setStroke(new BasicStroke(1));
-                List<Point> gridPoints = new LinkedList<>();
+                gridPoints = new LinkedList<>();
                 gridPoints.add(new Point(-hBound, k));
                 gridPoints.add(new Point(hBound, k));
                 if (!transformationType.equals("translate")) {
@@ -332,7 +349,6 @@ public class FigureBuilder extends JPanel {
                 g2.drawLine((int) gridPoints.get(0).getX(), (int) gridPoints.get(0).getY(), (int) gridPoints.get(1).getX(), (int) gridPoints.get(1).getY());
                 g2.setColor(Color.BLACK);
                 g2.setStroke(new BasicStroke(2));
-                g2.drawString(k.toString(), 10, k);
             }
         }
     }
